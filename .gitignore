@@ -104,8 +104,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-data/
-data
 .vscode
 .idea
 .DS_Store
@@ -122,3 +120,6 @@ work_dirs/
 *.pth
 *.py~
 *.sh~
+
+data/mgd/images
+data/usrt/images
