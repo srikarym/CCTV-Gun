@@ -1,12 +1,11 @@
 # dataset settings
 dataset_type = "GunDataset"
-dataset_root = "data/mgd/"
+dataset_root = "data/usrt/"
 
 
 img_norm_cfg = dict(
     mean=[106.15, 103.56, 101.75], std=[71.933, 72.015, 72.234], to_rgb=True
 )
-
 
 
 train_pipeline = [
