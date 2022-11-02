@@ -9,10 +9,12 @@ import warnings
 import mmcv
 import torch
 import torch.distributed as dist
+import wandb
 from mmcv import Config, DictAction
 from mmcv.runner import get_dist_info, init_dist
 from mmcv.utils import get_git_hash
 
+from copy import deepcopy
 from mmdet import __version__
 from mmdet.apis import init_random_seed, set_random_seed, train_detector
 from mmdet.datasets import build_dataset
@@ -90,6 +92,16 @@ def parse_args():
         '--auto-scale-lr',
         action='store_true',
         help='enable automatically scaling LR.')
+
+    parser.add_argument(
+        "--use-wandb",
+        action="store_true"
+    )
+    parser.add_argument(
+        "--wandb-name",
+        type=str
+    )
+
     args = parser.parse_args()
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
@@ -115,6 +127,17 @@ def main():
 
     # update data root according to MMDET_DATASETS
     update_data_root(cfg)
+
+    # Add wandb
+    if args.use_wandb:
+        cfg.log_config.hooks.append(
+            dict(type = "MMDetWandbHook",
+            init_kwargs = {
+                "entity" : "srikarym",
+                "project": "Gun-detection-new",
+                "config": deepcopy(cfg._cfg_dict),
+                "name" : args.wandb_name or None})
+        )
 
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)

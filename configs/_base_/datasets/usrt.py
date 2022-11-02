@@ -2,6 +2,8 @@
 dataset_type = "GunDataset"
 dataset_root = "data/usrt/"
 
+img_norm_cfg = dict(
+    mean=[112.108, 102.981, 87.49], std=[34.912, 32.826, 45.132], to_rgb=True)
 
 train_pipeline = [
     dict(type='LoadImageFromFile'),

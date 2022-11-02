@@ -2,6 +2,9 @@
 dataset_type = "GunDataset"
 dataset_root = "data/mgd/"
 
+# image norm calculated from mgd
+img_norm_cfg = dict(
+    mean=[121.112, 115.542, 96.106], std=[57.549, 52.405, 56.779], to_rgb=True)
 
 train_pipeline = [
     dict(type='LoadImageFromFile'),
