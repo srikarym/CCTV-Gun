@@ -101,7 +101,6 @@ class MMDetWandbHook(WandbLoggerHook):
                  bbox_score_thr=0.3,
                  **kwargs):
         super(MMDetWandbHook, self).__init__(init_kwargs, interval, **kwargs)
-
         self.log_checkpoint = log_checkpoint
         self.log_checkpoint_metadata = (
             log_checkpoint and log_checkpoint_metadata)
@@ -369,7 +368,7 @@ class MMDetWandbHook(WandbLoggerHook):
             data_ann = self.val_dataset.get_ann_info(idx)
             bboxes = data_ann['bboxes']
             labels = data_ann['labels']
-            masks = data_ann.get('masks', None)
+            masks = None
 
             # Get dict of bounding boxes to be logged.
             assert len(bboxes) == len(labels)

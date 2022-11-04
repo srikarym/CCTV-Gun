@@ -135,8 +135,8 @@ def main():
             init_kwargs = {
                 "entity" : "srikarym",
                 "project": "Gun-detection-new",
-                "config": deepcopy(cfg._cfg_dict),
-                "name" : args.wandb_name or None})
+                "name" : args.wandb_name or None,
+                "allow_val_change": True})
         )
 
     if args.cfg_options is not None:
@@ -243,7 +243,7 @@ def main():
         assert 'val' in [mode for (mode, _) in cfg.workflow]
         val_dataset = copy.deepcopy(cfg.data.val)
         val_dataset.pipeline = cfg.data.train.get(
-            'pipeline', cfg.data.train.dataset.get('pipeline'))
+            'pipeline', cfg.data.train.get('dataset', {}).get('pipeline'))
         datasets.append(build_dataset(val_dataset))
     if cfg.checkpoint_config is not None:
         # save mmdet version, config file content and class names in

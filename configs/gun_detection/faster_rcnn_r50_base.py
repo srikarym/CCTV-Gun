@@ -1,5 +1,5 @@
 _base_ = ['../_base_/models/faster_rcnn_r50_fpn.py', 
-        '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+        '../_base_/schedules/schedule_1x.py', '../_base_/gundet_runtime.py'
         ]
 
 # Load pretrained COCO weights
@@ -9,7 +9,6 @@ load_from = "https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_
 model = dict(
     roi_head=dict(
         bbox_head=dict(num_classes=2)))
-
 
 # optimizer
 # lr is set for a batch size of 8
@@ -22,16 +21,3 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.001,
     step=[8,11])
-
-log_config = dict(interval = 10)
-total_epochs = 12
-evaluation = dict(
-    metric = "bbox",
-    interval = 1
-)
-
-# Default setting for scaling LR automatically
-#   - `enable` means enable scaling LR automatically
-#       or not by default.
-#   - `base_batch_size` = 8.
-auto_scale_lr = dict(enable=False, base_batch_size=8)
