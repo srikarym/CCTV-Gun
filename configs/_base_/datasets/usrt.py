@@ -1,5 +1,6 @@
 # dataset settings
-dataset_type = "GunDataset"
+train_dataset_type = "GunDataset"
+val_dataset_type = "GunDatasetHOI"
 dataset_root = "data/usrt/"
 
 img_norm_cfg = dict(
@@ -36,21 +37,21 @@ data = dict(
     samples_per_gpu = 2,
     workers_per_gpu = 2,
     train = dict(
-        type = dataset_type,
+        type = train_dataset_type,
         data_root = dataset_root,
         ann_file = "annotation_detection/annotations_train.json",
         img_prefix = "images/",
         pipeline = train_pipeline
     ),
     val = dict(
-        type = dataset_type,
+        type = val_dataset_type,
         data_root = dataset_root,
         ann_file = "annotation_detection/annotations_val.json",
         img_prefix = "images/",
         pipeline = test_pipeline
     ),
     test = dict(
-        type = dataset_type,
+        type = val_dataset_type,
         data_root = dataset_root,
         ann_file = "annotation_detection/annotations_test.json",
         img_prefix = "images/",
