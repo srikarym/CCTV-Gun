@@ -124,3 +124,4 @@ work_dirs/
 data/mgd/images
 data/usrt/images
 scripts
+wandb/

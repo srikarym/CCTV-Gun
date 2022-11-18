@@ -1,4 +1,7 @@
-_base_ = '../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
+_base_ = [
+    '../_base_/models/faster_rcnn_r50_fpn.py',
+    '../_base_/schedules/schedule_1x.py', 
+]
 # model settings
 model = dict(
     neck=[

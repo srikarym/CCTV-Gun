@@ -243,6 +243,8 @@ class MMDetWandbHook(WandbLoggerHook):
             # Don't call super method at first, it will clear the log_buffer
             return super(MMDetWandbHook, self).after_train_iter(runner)
         else:
+            if not self.wandb.config.get("steps_per_epoch") and runner.log_buffer.output:
+                self.wandb.config.update({"steps_per_epoch": self.get_iter(runner)})
             super(MMDetWandbHook, self).after_train_iter(runner)
 
         if self.by_epoch:
