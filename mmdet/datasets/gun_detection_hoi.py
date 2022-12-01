@@ -5,4 +5,4 @@ from mmdet.datasets.coco_hoi import CocoHOIDataset
 
 @DATASETS.register_module()
 class GunDatasetHOI(CocoHOIDataset):
-    CLASSES = ('handgun', 'person')
+    CLASSES = ('person', 'handgun')

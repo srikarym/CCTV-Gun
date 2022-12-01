@@ -176,7 +176,7 @@ class COCOevalHOI(COCOeval):
                     s = s[t]
                 s = s[:, :, aind, mind]
             elif ap == 2:
-                handgun_idx = 0
+                handgun_idx = 1
                 # dimension of precision: [TxRxKxAxM]
                 s = self.eval['precision']
                 # IoU
@@ -186,7 +186,7 @@ class COCOevalHOI(COCOeval):
                 s = s[:, :, :, aind, mind]
                 s = s[:, :, handgun_idx, :]
             elif ap == 3:
-                person_idx = 1
+                person_idx = 0
                 # dimension of precision: [TxRxKxAxM]
                 s = self.eval['precision']
                 # IoU

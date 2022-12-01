@@ -5,7 +5,8 @@ total_epochs = 12
 evaluation = dict(
     metric = "bbox",
     interval = 1,
-    save_best = 'auto'
+    save_best = 'bbox_h_mAP',
+    rule = "greater"
 )
 
 # Default setting for scaling LR automatically
