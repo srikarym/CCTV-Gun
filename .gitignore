@@ -125,3 +125,5 @@ data/mgd/images
 data/usrt/images
 scripts
 wandb/
+artifacts/
+run_all.py
