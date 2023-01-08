@@ -2,7 +2,7 @@ _base_ = [
     '../_base_/models/faster_rcnn_r50_fpn.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/gundet_runtime.py'
 ]
-load_from = 'https://download.openmmlab.com/mmdetection/v2.0/swin/mask_rcnn_swin-t-p4-w7_fpn_1x_coco/mask_rcnn_swin-t-p4-w7_fpn_1x_coco_20210902_120937-9d6b7cfa.pth'  # noqa
+load_from = 'https://download.openmmlab.com/mmdetection/v2.0/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco_20210906_131725-bacf6f7b.pth'  # noqa
 model = dict(
     type='MaskRCNN',
     backbone=dict(

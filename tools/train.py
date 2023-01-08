@@ -25,7 +25,7 @@ from mmdet.utils import (collect_env, get_device, get_root_logger,
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
-    parser.add_argument('config', help='network config file path')
+    parser.add_argument('--config', help='network config file path')
     parser.add_argument('--dataset-config', help='train/test dataset config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
@@ -141,7 +141,8 @@ def main():
                 "entity" : "srikarym",
                 "project": "Gun-detection-new",
                 "name" : args.wandb_name or None,
-                "allow_val_change": True})
+                "allow_val_change": True},
+                num_eval_images=0)
         )
 
     if args.cfg_options is not None:

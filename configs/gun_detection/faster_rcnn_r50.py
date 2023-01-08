@@ -3,7 +3,7 @@ _base_ = ['../_base_/models/faster_rcnn_r50_fpn.py',
         ]
 
 # Load pretrained COCO weights
-load_from = "https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth"
+load_from = "https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth"
 
 # We also need to change the num_classes in head to match the dataset's annotation
 model = dict(

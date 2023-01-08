@@ -24,8 +24,10 @@ from mmdet.utils import (build_ddp, build_dp, compat_cfg, get_device,
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet test (and eval) a model')
-    parser.add_argument('config', help='test config file path')
-    parser.add_argument('checkpoint', help='checkpoint file')
+    parser.add_argument('--config', help='architecture config file path')
+    parser.add_argument('--dataset-config', help='test dataset config file path')
+    parser.add_argument('--checkpoint', help='checkpoint file')
+    parser.add_argument('--output-name', help='name of the output file to dump evaluation results')
     parser.add_argument(
         '--work-dir',
         help='the directory to save the file containing evaluation metrics')
@@ -135,6 +137,11 @@ def main():
 
     cfg = Config.fromfile(args.config)
 
+    if args.dataset_config:
+        # Update dataset 
+        ds_cfg = Config.fromfile(args.dataset_config)
+        cfg.merge_from_dict(ds_cfg)
+
     # replace the ${key} with the value of cfg.key
     cfg = replace_cfg_vals(cfg)
 
@@ -210,8 +217,12 @@ def main():
     # allows not to create
     if args.work_dir is not None and rank == 0:
         mmcv.mkdir_or_exist(osp.abspath(args.work_dir))
-        timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
-        json_file = osp.join(args.work_dir, f'eval_{timestamp}.json')
+        if not args.output_name:
+            timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
+            output_name = f'eval_{timestamp}.json'
+        else:
+            output_name = args.output_name
+        json_file = osp.join(args.work_dir, output_name)
 
     # build the dataloader
     dataset = build_dataset(cfg.data.test)
