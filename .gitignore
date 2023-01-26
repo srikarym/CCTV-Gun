@@ -133,3 +133,4 @@ data/ucf/test
 data/all_images/
 run_all.sh
 cluster_runs.py
+tmp/

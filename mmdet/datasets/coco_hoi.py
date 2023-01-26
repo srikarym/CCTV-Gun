@@ -2,6 +2,8 @@ import itertools
 import logging
 import os.path as osp
 import tempfile
+from copy import deepcopy
+from collections import defaultdict
 
 import mmcv
 import numpy as np
@@ -433,7 +435,8 @@ class CocoHOIDataset(CustomDataset):
                  proposal_nums=(100, 300, 1000),
                  iou_thrs=None,
                  metric_items=None,
-                 compute_pairwise_acc = False):
+                 compute_pairwise_acc = False,
+                 per_image_iou = False):
         """Evaluation in COCO protocol.
 
         Args:
@@ -572,6 +575,18 @@ class CocoHOIDataset(CustomDataset):
                     eval_results[item] = val
             else:
                 cocoEval.evaluate()
+
+                def post_process_iou(iou_dict):
+                    out = defaultdict(dict)
+                    for k,v in iou_dict.items():
+                        if len(v):
+                            out[k[0]][int(k[1])] = v[0][0]
+                    
+                    return out
+
+
+                if per_image_iou:
+                    eval_results["per_image_iou"] = post_process_iou(cocoEval.ious)
                 cocoEval.accumulate()
                 cocoEval.summarize()
                 if classwise:  # Compute per-category AP
