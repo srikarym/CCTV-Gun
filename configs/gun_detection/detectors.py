@@ -1,10 +1,12 @@
-_base_ = ["../detectors/detectors_cascade_rcnn_r50_1x_coco.py"]
+_base_ = ["../detectors/detectors_htc_r50_1x_coco.py"]
 
-load_from = "https://download.openmmlab.com/mmdetection/v2.0/detectors/detectors_cascade_rcnn_r50_1x_coco/detectors_cascade_rcnn_r50_1x_coco-32a10ba0.pth"
+load_from = "https://download.openmmlab.com/mmdetection/v2.0/detectors/detectors_htc_r50_1x_coco/detectors_htc_r50_1x_coco-329b1453.pth"
 
 # We also need to change the num_classes in head to match the dataset's annotation
+
 model = dict(
-    roi_head=dict(
+    roi_head = dict(
+        semantic_head = None,
         bbox_head=[
             dict(
                 type='Shared2FCBBoxHead',
@@ -56,7 +58,11 @@ model = dict(
                     use_sigmoid=False,
                     loss_weight=1.0),
                 loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0))
-        ] ))
+        ],
+        mask_roi_extractor = None,
+        mask_head = None
+    )
+)
 
 # save best model
 total_epochs = 36

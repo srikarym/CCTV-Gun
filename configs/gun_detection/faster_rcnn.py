@@ -4,14 +4,10 @@
 _base_ = ['../faster_rcnn/faster_rcnn_r50_fpn_mstrain_3x_coco.py']
 
 # Load pretrained COCO weights
-load_from = "https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r101_fpn_mstrain_3x_coco/faster_rcnn_r101_fpn_mstrain_3x_coco_20210524_110822-4d4d2ca8.pth"
+load_from = "https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_mstrain_3x_coco/faster_rcnn_r50_fpn_mstrain_3x_coco_20210524_110822-e10bd31c.pth"
 
 # We also need to change the num_classes in head to match the dataset's annotation
 model = dict(
-    backbone=dict(
-        depth=101,
-        init_cfg=dict(type='Pretrained',
-                      checkpoint='torchvision://resnet101')),
     roi_head=dict(
         bbox_head=dict(num_classes=2)))
 

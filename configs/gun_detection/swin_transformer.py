@@ -4,10 +4,10 @@
 #     '../_base_/models/faster_rcnn_r50_fpn.py', '../_base_/gundet_runtime.py'
 # ]
 _base_ = [
-    "../swin/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py"
+    "../swin/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py"
 ]
 
-load_from = 'https://download.openmmlab.com/mmdetection/v2.0/swin/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_20210903_104808-b92c91f1.pth'  # noqa
+load_from = 'https://download.openmmlab.com/mmdetection/v2.0/swin/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco_20210908_165006-90a4008c.pth'  # noqa
 
 model = dict(
     roi_head=dict(
