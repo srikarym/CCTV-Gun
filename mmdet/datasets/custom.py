@@ -66,7 +66,8 @@ class CustomDataset(Dataset):
                  proposal_file=None,
                  test_mode=False,
                  filter_empty_gt=True,
-                 file_client_args=dict(backend='disk')):
+                 file_client_args=dict(backend='disk'),
+                 **kwargs):
         self.ann_file = ann_file
         self.data_root = data_root
         self.img_prefix = img_prefix

@@ -128,6 +128,7 @@ def main():
     if args.dataset_config:
         # Update dataset 
         ds_cfg = Config.fromfile(args.dataset_config)
+
         cfg.merge_from_dict(ds_cfg)
 
     # update data root according to MMDET_DATASETS

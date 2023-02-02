@@ -1,7 +1,7 @@
 _base_ = ["./default_runtime.py"]
 
 # save best model
-total_epochs = 12
+total_epochs = 36
 evaluation = dict(
     metric = "bbox",
     interval = 1,

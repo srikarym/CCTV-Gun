@@ -1,13 +1,15 @@
+# ++ two-stage Deformable DETR	
+
 _base_ = ["../deformable_detr/deformable_detr_twostage_refine_r50_16x2_50e_coco.py"]
 
 load_from = "https://download.openmmlab.com/mmdetection/v2.0/deformable_detr/deformable_detr_twostage_refine_r50_16x2_50e_coco/deformable_detr_twostage_refine_r50_16x2_50e_coco_20210419_220613-9d28ab72.pth"
 
 # We also need to change the num_classes in head to match the dataset's annotation
 model = dict(
-    bbox_head=dict(num_classes=2))
+    bbox_head=dict(num_classes=2, as_two_stage=True))
 
 # save best model
-total_epochs = 12
+total_epochs = 36
 evaluation = dict(
     metric = "bbox",
     interval = 1,
@@ -27,6 +29,10 @@ optimizer = dict(
             'reference_points': dict(lr_mult=0.1)
         }))
 optimizer_config = dict(grad_clip=dict(max_norm=0.1, norm_type=2))
+
+lr_config = dict(policy='step', step=[28])
+runner = dict(type='EpochBasedRunner', max_epochs=36)
+
 
 # learning policy
 # NOTE: `auto_scale_lr` is for automatically scaling LR,

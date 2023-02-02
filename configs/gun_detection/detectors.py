@@ -59,7 +59,7 @@ model = dict(
         ] ))
 
 # save best model
-total_epochs = 12
+total_epochs = 36
 evaluation = dict(
     metric = "bbox",
     interval = 1,
@@ -77,4 +77,6 @@ workflow = [('train', 1), ('val', 1)]
 
 # only save final model
 checkpoint_config = dict(interval=1, max_keep_ckpts=1)
+lr_config = dict(step=[28, 34])
+runner = dict(type='EpochBasedRunner', max_epochs=36)
 
