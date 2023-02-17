@@ -16,3 +16,11 @@ model = dict(
 
 lr_config = dict(warmup_iters=1000, step=[27, 33])
 runner = dict(max_epochs=36)
+
+evaluation = dict(
+    metric = "bbox",
+    interval = 1,
+    save_best = 'bbox_h_mAP',
+    rule = "greater"
+)
+auto_scale_lr = dict(enable=True, base_batch_size=8)

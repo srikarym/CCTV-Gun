@@ -3,8 +3,10 @@ import glob
 import os
 import os.path as osp
 import warnings
+import json
 
 import mmcv
+import numpy as np
 import torch
 from mmcv.utils import TORCH_VERSION, digit_version, print_log
 
@@ -87,3 +89,14 @@ def floordiv(dividend, divisor, rounding_mode='trunc'):
         return torch.div(dividend, divisor, rounding_mode=rounding_mode)
     else:
         return dividend // divisor
+
+
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)

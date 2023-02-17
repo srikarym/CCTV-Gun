@@ -10,7 +10,7 @@ import mmcv
 import torch
 import torch.distributed as dist
 from mmcv import Config, DictAction
-from mmcv.runner import get_dist_info, init_dist
+from mmcv.runner import get_dist_info, init_dist, load_checkpoint
 from mmcv.utils import get_git_hash
 
 from copy import deepcopy
@@ -28,6 +28,8 @@ def parse_args():
     parser.add_argument('--config', help='network config file path')
     parser.add_argument('--dataset-config', help='train/test dataset config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
+    parser.add_argument("--load-from", 
+        help = "load from checkpoint, replacing load_from in config")
     parser.add_argument(
         '--resume-from', help='the checkpoint file to resume from')
     parser.add_argument(
@@ -167,6 +169,9 @@ def main():
     # set cudnn_benchmark
     if cfg.get('cudnn_benchmark', False):
         torch.backends.cudnn.benchmark = True
+
+    if args.load_from:
+        cfg.load_from = args.load_from
 
     # work_dir is determined in this priority: CLI > segment in file > filename
     if args.work_dir is not None:

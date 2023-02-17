@@ -4,6 +4,7 @@ import os
 import os.path as osp
 import time
 import warnings
+import json
 
 import mmcv
 import torch
@@ -18,7 +19,7 @@ from mmdet.datasets import (build_dataloader, build_dataset,
 from mmdet.models import build_detector
 from mmdet.utils import (build_ddp, build_dp, compat_cfg, get_device,
                          replace_cfg_vals, setup_multi_processes,
-                         update_data_root)
+                         update_data_root, NpEncoder)
 
 
 def parse_args():
@@ -55,6 +56,10 @@ def parse_args():
         help='Format the output results without perform evaluation. It is'
         'useful when you want to format the result to a specific format and '
         'submit it to the test server')
+    parser.add_argument(
+        '--show-label',
+        action='store_true',
+        help='show class label text along with bbox')
     parser.add_argument(
         '--eval',
         type=str,
@@ -247,7 +252,7 @@ def main():
     if not distributed:
         model = build_dp(model, cfg.device, device_ids=cfg.gpu_ids)
         outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
-                                  args.show_score_thr)
+                                  args.show_score_thr, text=args.show_label)
     else:
         model = build_ddp(
             model,
@@ -276,10 +281,16 @@ def main():
                 eval_kwargs.pop(key, None)
             eval_kwargs.update(dict(metric=args.eval, **kwargs))
             metric = dataset.evaluate(outputs, **eval_kwargs)
-            print(metric)
+            
             metric_dict = dict(config=args.config, metric=metric)
             if args.work_dir is not None and rank == 0:
-                mmcv.dump(metric_dict, json_file)
+                try:
+                    mmcv.dump(metric_dict, json_file)
+                except:
+                    metric_dict['metric']['per_image_iou'] = [{int(k):v}  for k,v in metric_dict['metric']['per_image_iou'].items()]
+                    mmcv.dump(metric_dict, json_file)
+            else:
+                print(metric)
 
 
 if __name__ == '__main__':

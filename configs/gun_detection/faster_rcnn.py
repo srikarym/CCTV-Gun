@@ -33,7 +33,8 @@ evaluation = dict(
     metric = "bbox",
     interval = 1,
     save_best = 'bbox_h_mAP',
-    rule = "greater"
+    rule = "greater",
+    classwise=True
 )
 
 # Default setting for scaling LR automatically
@@ -47,4 +48,3 @@ workflow = [('train', 1), ('val', 1)]
 # only save final model
 checkpoint_config = dict(interval=1, max_keep_ckpts=1)
 
-evaluation = dict(classwise=True)
