@@ -10,6 +10,14 @@ We use images from three datasets :
 
 Instructions on how to download these datasets can be found in [dataset_instructions.md](./dataset_instructions.md) .
 
+## Setup
+
+We perform two kinds of assessment : Intra-dataset and Cross-dataset (See paper for more details). We train five detection models : 
+- Faster R-CNN
+- Swin-T
+- Deformable DETR
+- DetectoRS
+- ConvNeXt-T
 
 ## Training
 
@@ -18,9 +26,11 @@ All of the above datasets consists of two classes : Person (class 0) and Handgun
 python tools/train.py --config <path/to/model/config.py> --dataset-config <path/to/dataset/config.py> <extra_args>
 ```
 
-Model config files can be found [here](./configs/gun_detection/)
+- Model config files [link](./configs/gun_detection/)
 
-Dataset config files can be found [here](./configs/_base_/datasets/gun_detection/)
+- Dataset config files [link](./configs/_base_/datasets/gun_detection/)
+
+- Trained models link.
 
 ### Extra args
 To adjust the training batch size
@@ -34,12 +44,17 @@ After you create an account in wandb, change `entity` and `project` in [train.py
 ```
 ### Examples:
 
-Train a Swin-T on MGD
+Train a Swin-T on MGD (Intra-dataset)
 ```bash
 python tools/train.py --config configs/gun_detection/swin_transformer.py --dataset-config configs/_base_/datasets/gun_detection/mgd.py --cfg-options data.samples_per_gpu=6
 ```
 
-Fine-tune MGD+USRT trained Deformable-DETR model on UCF
+Train a detectoRS model on MGD+USRT (Inter-dataset)
+```bash
+python tools/train.py --config configs/gun_detection/detectors.py --dataset-config configs/_base_/datasets/gun_detection/mgd_usrt.py --cfg-options data.samples_per_gpu=4
+```
+
+Fine-tune MGD+USRT trained Deformable-DETR model on UCF (Inter-dataset)
 ```bash
 python tools/train.py --config configs/gun_detection/deformable_detr.py --dataset-config configs/_base_/datasets/gun_detection/ucf.py --cfg-options data.samples_per_gpu=6 --load-from <path/to/trained/model.pth>
 ```
@@ -48,24 +63,24 @@ python tools/train.py --config configs/gun_detection/deformable_detr.py --datase
 ## Testing
 To evaluate a trained model, run
 ```bash
-python tools/test.py <path/to/test/dataset/config.py> <path/to/trained/model> --work-dir <path/to/save/test/scores> --eval bbox
+python tools/test.py --config <path/to/model/config.py> --dataset-config <path/to/dataset/config.py> --checkpoint <path/to/trained/model> --work-dir <path/to/save/test/scores> --eval bbox
 ```
 
 ### Examples:
 
-Evaluate a faster-rcnn **trained on MGD** on **USRT's test set**
+Evaluate a faster-rcnn trained on MGD on MGD's test set (Intra-dataset)
 
 ```bash
-python tools/test.py configs/gun_detection/faster_rcnn_r50_usrt.py work_dirs/faster_rcnn_r50_mgd/epoch_12.pth --work-dir work_dirs/faster_rcnn_r50_mgd/usrt/ --eval bbox
+python tools/test.py --config configs/gun_detection/faster_rcnn.py --dataset-config configs/_base_/datasets/gun_detection/mgd.py --checkpoint <path/to/mgd/trained/model.pth> --work-dir <path/to/save/test/scores> --eval bbox
 ```
 
-Evaluate a faster-rcnn **trained on USRT** on **MGD's test set** 
+Evaluate a ConvNeXt trained on MGD+USRT on the entirety of UCF (Inter-dataset) 
 
 ```bash
-python tools/test.py configs/gun_detection/faster_rcnn_r50_mgd.py work_dirs/faster_rcnn_r50_usrt/epoch_12.pth --work-dir work_dirs/faster_rcnn_r50_usrt/mgd/ --eval bbox
+python tools/test.py --config configs/gun_detection/convnext.py --dataset-config configs/_base/datasets/gun_detection/ucf_test_full.py --checkpoint <path/to/mgd+usrt/trained/model.pth> --work-dir <path/to/save/test/scores> --eval bbox
 ```
 
-To save the bounding box predictions on test set , add `--save-path <path/to/output/folder>` at the end.
+To save the bounding box predictions on test set , add `--save-path <path/to/output/folder>` to the above command.
 
 
 ## Citations
