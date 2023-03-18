@@ -141,8 +141,8 @@ def main():
         cfg.log_config.hooks.append(
             dict(type = "MMDetWandbHook",
             init_kwargs = {
-                "entity" : "srikarym",
-                "project": "Gun-detection-new",
+                "entity" : "",
+                "project": "",
                 "name" : args.wandb_name or None,
                 "allow_val_change": True},
                 num_eval_images=0)

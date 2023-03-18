@@ -15,7 +15,7 @@ We ask the user to download the images of MGD, USRT and UCF from original source
 
 
 ### MGD
-- Download `MGD.rar` file from the original source [^1] and extract into the current directory.
+- Download `MGD.rar` file from the original source [link](https://drive.google.com/file/d/12ly_8zSpuPTMoYU3Bw1zGkObPU_RmbK-/view) and extract into the current directory.
     - The extracted folder would have the following structure :
     ```
     MGD
@@ -34,13 +34,13 @@ We ask the user to download the images of MGD, USRT and UCF from original source
 - Run `python3 scripts/copy_images_mgd.py` to copy images used in CCTV-GUN
 
 ### USRT
-- Download `weapons_images_2fps.zip` file from the original source [^2].
+- Download `weapons_images_2fps.zip` file from the original source [link](https://uses0-my.sharepoint.com/personal/jsalazar_us_es/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fjsalazar%5Fus%5Fes%2FDocuments%2FShared%2FVICTORY%2FUS%2Fweapons%5Fimages%5F2fps%2Ezip&parent=%2Fpersonal%2Fjsalazar%5Fus%5Fes%2FDocuments%2FShared%2FVICTORY%2FUS&ga=1).
     - Run `unzip weapons_images_2fps.zip`
     - A folder called `Images` will be extracted into the current directory.
 - Run `python3 scripts/copy_images_usrt.py` to copy images used in CCTV-GUN
 
 ### UCF
-- Download `Anomaly-Videos-Part-3.zip` from the original source [^3].
+- Download `Anomaly-Videos-Part-3.zip` from the original source [link](https://www.dropbox.com/sh/75v5ehq4cdg5g5g/AABvnJSwZI7zXb8_myBA0CLHa?dl=0).
     - Run `unzip Anomaly-Videos-Part-3.zip` 
     - A folder called `Anomaly-Videos-Part-3` will be extracted into the current directory.
 - Run `python3 scripts/copy_images_ucf.py` to copy images used in CCTV-GUN. Since UCF dataset has videos, we extract specific frames and save them as JPG images. The frame ids can be found in `data/ucf/frames.json`
@@ -94,10 +94,3 @@ We provide bounding box annotations of all images in CCTV-GUN dataset in `data/<
 
 To train models on pairs of datasets (Ex: MGD + USRT), the annotations provided in `data/dataset_pairs/<split>` can be used.
 
-## Citations
-
-[^1]: Lim, JunYi, et al. "Deep multi-level feature pyramids: Application for non-canonical firearm detection in video surveillance." Engineering applications of artificial intelligence 97 (2021): 104094.
-
-[^2]: González, Jose L. Salazar, et al. "Real-time gun detection in CCTV: An open problem." Neural networks 132 (2020): 297-308.
-
-[^3]: Sultani, Waqas, Chen Chen, and Mubarak Shah. "Real-world anomaly detection in surveillance videos." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
