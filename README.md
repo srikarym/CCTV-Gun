@@ -13,11 +13,11 @@ Instructions on how to download these datasets can be found in [dataset_instruct
 ## Setup
 
 We perform two kinds of assessment : Intra-dataset and Cross-dataset (See paper for more details). We train five detection models : 
-- Faster R-CNN
-- Swin-T
-- Deformable DETR
-- DetectoRS
-- ConvNeXt-T
+- Faster R-CNN [^4]
+- Swin-T [^5]
+- Deformable DETR [^6]
+- DetectoRS [^7]
+- ConvNeXt-T [^8]
 
 ## Training
 
@@ -83,10 +83,20 @@ python tools/test.py --config configs/gun_detection/convnext.py --dataset-config
 To save the bounding box predictions on test set , add `--save-path <path/to/output/folder>` to the above command.
 
 
-## Citations
+## References
 
 [^1]: Lim, JunYi, et al. "Deep multi-level feature pyramids: Application for non-canonical firearm detection in video surveillance." Engineering applications of artificial intelligence 97 (2021): 104094.
 
 [^2]: González, Jose L. Salazar, et al. "Real-time gun detection in CCTV: An open problem." Neural networks 132 (2020): 297-308.
 
 [^3]: Sultani, Waqas, Chen Chen, and Mubarak Shah. "Real-world anomaly detection in surveillance videos." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
+
+[^4]: Ren, Shaoqing, et al. "Faster r-cnn: Towards real-time object detection with region proposal networks." Advances in neural information processing systems 28 (2015).
+
+[^5]: Liu, Ze, et al. "Swin transformer: Hierarchical vision transformer using shifted windows." Proceedings of the IEEE/CVF international conference on computer vision. 2021.
+
+[^6]: Zhu, Xizhou, et al. "Deformable detr: Deformable transformers for end-to-end object detection." arXiv preprint arXiv:2010.04159 (2020).
+
+[^7]: Qiao, Siyuan, Liang-Chieh Chen, and Alan Yuille. "Detectors: Detecting objects with recursive feature pyramid and switchable atrous convolution." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2021.
+
+[^8]: Liu, Zhuang, et al. "A convnet for the 2020s." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.
