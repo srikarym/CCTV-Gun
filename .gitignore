@@ -123,7 +123,7 @@ work_dirs/
 
 data/mgd/images
 data/usrt/images
-scripts
+notebooks
 wandb/
 artifacts/
 run_all.py
