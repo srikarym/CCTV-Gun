@@ -1,5 +1,6 @@
 ## Introduction
-This repo contains training and evaluation code of CCTV-GUN benchmark. It uses [mmdetection](https://mmdetection.readthedocs.io/en/latest/) to train object detection models.
+This repo contains training and evaluation code of CCTV-GUN benchmark. It uses [mmdetection](https://mmdetection.readthedocs.io/en/latest/) to train object detection models. Our arXiv submission can be found [here](https://arxiv.org/abs/2303.10703).
+
 
 ## Data
 We use images from three datasets : 
@@ -82,7 +83,20 @@ python tools/test.py --config configs/gun_detection/convnext.py --dataset-config
 
 To save the bounding box predictions on test set , add `--save-path <path/to/output/folder>` to the above command.
 
+## Citation
 
+Please consider citing this project in your publications if it helps your research
+
+```
+@misc{yellapragada2023cctvgun,
+      title={CCTV-Gun: Benchmarking Handgun Detection in CCTV Images}, 
+      author={Srikar Yellapragada and Zhenghong Li and Kevin Bhadresh Doshi and Purva Makarand Mhasakar and Heng Fan and Jie Wei and Erik Blasch and Haibin Ling},
+      year={2023},
+      eprint={2303.10703},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
 ## References
 
 [^1]: Lim, JunYi, et al. "Deep multi-level feature pyramids: Application for non-canonical firearm detection in video surveillance." Engineering applications of artificial intelligence 97 (2021): 104094.
