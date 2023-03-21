@@ -83,7 +83,7 @@ python tools/test.py --config configs/gun_detection/convnext.py --dataset-config
 
 To save the bounding box predictions on test set , add `--save-path <path/to/output/folder>` to the above command.
 
-## Citation
+## Citations
 
 Please consider citing the following references in your publications if it helps your research
 
