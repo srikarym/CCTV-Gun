@@ -135,4 +135,6 @@ run_all.sh
 cluster_runs.py
 tmp/
 
-data/
+data/mgd/test
+data/usrt/test
+data/annotated
