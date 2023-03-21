@@ -85,7 +85,7 @@ To save the bounding box predictions on test set , add `--save-path <path/to/out
 
 ## Citation
 
-Please consider citing this project in your publications if it helps your research
+Please consider citing the following references in your publications if it helps your research
 
 ```
 @misc{yellapragada2023cctvgun,
@@ -95,6 +95,34 @@ Please consider citing this project in your publications if it helps your resear
       eprint={2303.10703},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
+}
+
+@article{lim2021deep,
+  title={Deep multi-level feature pyramids: Application for non-canonical firearm detection in video surveillance},
+  author={Lim, JunYi and Al Jobayer, Md Istiaque and Baskaran, Vishnu Monn and Lim, Joanne MunYee and See, John and Wong, KokSheik},
+  journal={Engineering applications of artificial intelligence},
+  volume={97},
+  pages={104094},
+  year={2021},
+  publisher={Elsevier}
+}
+
+@article{gonzalez2020real,
+  title={Real-time gun detection in CCTV: An open problem},
+  author={Gonz{\'a}lez, Jose L Salazar and Zaccaro, Carlos and {\'A}lvarez-Garc{\'\i}a, Juan A and Morillo, Luis M Soria and Caparrini, Fernando Sancho},
+  journal={Neural networks},
+  volume={132},
+  pages={297--308},
+  year={2020},
+  publisher={Elsevier}
+}
+
+@inproceedings{sultani2018real,
+  title={Real-world anomaly detection in surveillance videos},
+  author={Sultani, Waqas and Chen, Chen and Shah, Mubarak},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={6479--6488},
+  year={2018}
 }
 ```
 ## References
