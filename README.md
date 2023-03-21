@@ -30,7 +30,7 @@ python tools/train.py --config <path/to/model/config.py> --dataset-config <path/
 
 - Dataset config files [link](./configs/_base_/datasets/gun_detection/)
 
-- Trained models link.
+- Trained models [link](https://drive.google.com/drive/folders/1uvNthQ_iSjDDf2nlPY9g3iEYA16Dn60H?usp=sharing)
 
 ### Extra args
 To adjust the training batch size
