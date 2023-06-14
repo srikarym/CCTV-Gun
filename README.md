@@ -5,10 +5,13 @@ This repo contains training and evaluation code of CCTV-GUN benchmark. It uses [
 ## Requirements
 We follow the installation instructions in the mmdetection documentation [here](https://mmdetection.readthedocs.io/en/v2.2.0/install.html). Specifically, our code requires `mmcls=0.25.0,` `mmcv-full=1.7.0` and `torch=1.13.0`. 
 
-The output of `conda list -e ` can be found in [requirements_cctv_gun.txt](./requirements/requirements_cctv_gun.txt). It can be used to create a conda virtual environment with
+The output of `conda env export > env.yml ` can be found in [env.yml](./requirements/env.yml). It can be used to create a conda virtual environment with
 
 ```
-conda create --name <env> --file requirements/requirements_cctv_gun.txt
+conda env create  -f env.yml
+conda activate env_cc
+pip install openmim
+mim install mmcv-full==1.7.0
 ```
 
 ## Data
