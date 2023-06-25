@@ -12,6 +12,7 @@ conda env create  -f env.yml
 conda activate env_cc
 pip install openmim
 mim install mmcv-full==1.7.0
+pip install -e . 
 ```
 
 ## Data
